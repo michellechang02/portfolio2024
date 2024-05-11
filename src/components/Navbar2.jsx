@@ -1,39 +1,32 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import {AcmeLogo} from "./AcmeLogo.jsx";
 
 export default function Navbar2() {
   return (
-    <Navbar isBordered >
-      <NavbarBrand>
-      <AcmeLogo />
-        <p className="font-bold text-inherit">Minji</p>
+    <Navbar isBordered={false} isBlurred>
+      <NavbarBrand href="/">
+        <p className="font-bold text-inherit">mɪˈʃɛl</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            Customers
+      <NavbarItem>
+          <Link color="foreground" href="/">
+            Home
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
+          <Link color="foreground" href="/about">
+            About
           </Link>
         </NavbarItem>
-      </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+        <NavbarItem>
+          <Link color="foreground" href="/projects">
+            Projects
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
-          </Button>
+          <Link color="foreground" href="/fun">
+            Fun
+          </Link>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
