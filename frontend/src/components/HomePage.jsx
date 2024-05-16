@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { useRef , Suspense} from "react"
+import { useRef , Suspense, useEffect, useState } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Environment, useGLTF } from "@react-three/drei"
 import { EffectComposer, N8AO } from "@react-three/postprocessing"
@@ -47,6 +47,29 @@ function Pointer({ vec = new THREE.Vector3() }) {
 }
 
 export default function HomePage() {
+  const [loading, setLoading] = useState(true);
+  const [countdown, setCountdown] = useState(4);
+
+  useEffect(() => {
+    // Set an interval to update the countdown every second
+    const interval = setInterval(() => {
+      setCountdown((currentCountdown) => {
+        if (currentCountdown === 1) {
+          setLoading(false); // Set loading to false when countdown reaches 1
+          clearInterval(interval); // Clear the interval
+          return currentCountdown; // Return the current countdown to avoid decrement
+        }
+        return currentCountdown - 1; // Decrement countdown
+      });
+    }, 1000);
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
+
+  
+
+
   return (
     <div>
     <Suspense fallback={null}>
@@ -58,7 +81,7 @@ export default function HomePage() {
     shadows
     gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
     camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-    onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}>
+    onCreated={(state) => (state.gl.toneMappingExposure = 2)}>
     <ambientLight intensity={1} />
     <spotLight position={[20, 20, 25]} penumbra={1} angle={0.2} color="white" castShadow shadow-mapSize={[512, 512]} />
     <directionalLight position={[0, 5, -4]} intensity={4} />
@@ -73,7 +96,7 @@ export default function HomePage() {
     </EffectComposer>
   </Canvas>
  </Suspense>
- <div style={{
+ {!loading ? (<div style={{
         position: 'absolute',
         top: 0,
         left: 0,
@@ -87,6 +110,23 @@ export default function HomePage() {
         pointerEvents: 'none', // Important for allowing interaction with the canvas
       }}>
         Michelle Minji Chang
+      </div>) : (<div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'black',
+        fontSize: '100px',
+        pointerEvents: 'none', // Important for allowing interaction with the canvas
+      }}>
+        {countdown === 4 ? "Ready?" : countdown}
       </div>
+
+      )
+      }
  </div>
 )}
