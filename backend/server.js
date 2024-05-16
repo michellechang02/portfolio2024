@@ -22,7 +22,7 @@ app.get('/', async(req,res) => {
 
 
 //only to load the data into the database once
-app.post('/music', async (req, res) => {
+app.post('/allMusic', async (req, res) => {
     try {
         const db = await connectDB();
         const musicCollection = db.collection('music');

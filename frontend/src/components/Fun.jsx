@@ -31,12 +31,10 @@ function Fun(props) {
         e.preventDefault();
         const encodedsong = encodeURIComponent(songInput);
         try {
-            const response = await axios.get(`http://localhost:8080/music/${encodedsong}`);
+            const response = await axios.get(`${config.serverURL}/music/${encodedsong}`);
             setSongAll(response.data); // Corrected from response.data[0] to response.data
             console.log("Fetched song data:", response.data);
 
-            // Since response.data is an object, alerting this way isn't very user-friendly. You might want to show a specific attribute:
-            alert(`Song fetched: ${response.data.title} by ${response.data.artist}`);
           } catch (error) {
             console.log(error);
             alert(error.message);
@@ -52,7 +50,7 @@ function Fun(props) {
         console.log("second" + years[1]);
         
         try {
-            const response = await axios.get(`http://localhost:8080/years/${years[0]}/${years[1]}`);
+            const response = await axios.get(`${config.serverURL}/years/${years[0]}/${years[1]}`);
             setYearsAll(response.data);
             console.log(yearsAll);
           } catch (error) {
@@ -69,7 +67,7 @@ function Fun(props) {
         e.preventDefault();
         const encodedgenre = encodeURIComponent(genreInput);
         try {
-            const response = await axios.get(`http://localhost:8080/genres/${encodedgenre}`);
+            const response = await axios.get(`${config.serverURL}/genres/${encodedgenre}`);
             setGenreOutput(response.data);
           } catch (error) {
             console.log(error);
@@ -82,7 +80,7 @@ function Fun(props) {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:8080/allGenres') 
+        axios.get(`${config.serverURL}/allGenres`) 
             .then(response => {
                 // Handle the response by updating the state with the received genres
                 setGenres(response.data);
