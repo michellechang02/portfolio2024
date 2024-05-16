@@ -69,6 +69,29 @@ app.get('/music/:title', async (req, res) => {
     }
 })
 
+app.get('/genres/:genre', async (req, res) => {
+    const { genre } = req.params;  // Get genre from the route parameters
+    console.log(genre);
+
+    try {
+        const db = await connectDB();
+        const musicCollection = db.collection('music');
+
+        // Query the database for songs by genre
+        const result = await musicCollection.find({ "top genre": genre }).toArray();
+        console.log(result)
+
+        if (result && result.length > 0) {
+            res.status(200).json(result); // Send the results back to the client if songs are found
+        } else {
+            res.status(404).send('No songs found in this genre'); // Send a 404 response if no songs are found
+        }
+    } catch (error) {
+        console.error('Failed to get songs', error);
+        res.status(500).send('Error getting songs');
+    }
+});
+
 app.get('/allGenres', async (req, res) => {
 
     try {

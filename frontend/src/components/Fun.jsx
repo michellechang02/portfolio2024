@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Card, CardBody, Input, Button, Slider, CardHeader, Select, SelectItem} from '@nextui-org/react';
+import {Card, CardBody, Input, Button, Slider, CardHeader, Select, SelectItem, CardFooter} from '@nextui-org/react';
 import {Search} from 'react-feather';
 import axios from 'axios';
 import config from '../config.json';
@@ -8,16 +8,19 @@ import {Database, Clock, Speaker, Music} from 'react-feather'
 function Fun(props) {
 
     const [songInput, setSongInput] = useState('');
-    const [songAll, setSongAll] = useState([]);
-    const [genres, setGenres] = useState([])
+    const [songAll, setSongAll] = useState({});
+    const [genres, setGenres] = useState([]);
+    const [years, setYears] = useState([2010, 2019]);
+    const [yearsAll, setYearsAll] = useState([]);
+    const [genreInput, setGenreInput] = useState('');
+    const [genreOutput, setGenreOutput] = useState([]);
 
-    const handleSubmit = async (e) => {
+    const handleSong = async (e) => {
         const encodedsong = encodeURIComponent(songInput);
         try {
-            const response = await axios.get(
-              `${config.serverURL}/search?q=${encodedsong}`
-            );
-            setSongAll(response.data[0]);
+            const response = await axios.get(`http://localhost:8080/music/${encodedsong}`);
+            setSongAll(response.data);
+            console.log(songAll);
           } catch (error) {
             console.log(error);
             alert(error.message);
@@ -27,8 +30,40 @@ function Fun(props) {
           setSongInput("");
     }
 
+    const handleYear = async (e) => {
+        console.log("first" + years[0]);
+        console.log("second" + years[1]);
+        
+        try {
+            const response = await axios.get(`http://localhost:8080/years/${years[0]}/${years[1]}`);
+            setYearsAll(response.songs);
+            console.log(yearsAll);
+          } catch (error) {
+            console.log(error);
+            alert(error.message);
+          }
+        
+        //clear year input
+        setYears([]);
+    }
+
+    const handleGenre = async (e) => {
+        const encodedgenre = encodeURIComponent(genreInput);
+        try {
+            const response = await axios.get(`http://localhost:8080/music/${encodedgenre}`);
+            setGenreOutput(response.data[0]);
+          } catch (error) {
+            console.log(error);
+            alert(error.message);
+          }
+      
+          //clear genre input
+          setGenreInput("");
+    }
+
     useEffect(() => {
-        axios.get('http://localhost:8080/allGenres') // Make sure the URL matches your server's address
+        
+        axios.get('http://localhost:8080/allGenres') 
             .then(response => {
                 // Handle the response by updating the state with the received genres
                 setGenres(response.data);
@@ -51,7 +86,7 @@ function Fun(props) {
             <div className="flex justify-around items-center w-full">
     <Card className="flex-1 mx-2 mt-10 max-w-md" shadow="none">
         <CardBody>
-            <form className="flex items-center" onSubmit={handleSubmit}>
+            <form className="flex items-center" onSubmit={handleSong}>
                 <Input
                     type="text"
                     label="Song"
@@ -64,10 +99,15 @@ function Fun(props) {
                 </Button>
             </form>
         </CardBody>
+        {songAll !== null && 
+            (<CardFooter>
+                {songAll.title}
+            </CardFooter>)
+        }
     </Card>
     <Card className="flex-1 mx-2 mt-10 max-w-md" shadow="none">
         <CardBody>
-        <form className="flex items-center" onSubmit={handleSubmit}>
+        <form className="flex items-center" onSubmit={handleYear}>
             <Slider 
                 label="Recommendations by Year Range"
                 step={1} 
@@ -76,6 +116,7 @@ function Fun(props) {
                 size="lg"
                 defaultValue={[2010, 2019]} 
                 getValue={(year) => `${year}`}
+                onChange={(e) => setYears(e)}
                 className="flex-1 mx-2 max-w-md"
             />
              <Button isIconOnly type="submit" className="ml-2" size="lg">
@@ -86,11 +127,12 @@ function Fun(props) {
     </Card>
     <Card className="flex-1 mx-2 mt-10 max-w-md" shadow="none">
         <CardBody>
-        <form className="flex items-center" onSubmit={handleSubmit}>
+        <form className="flex items-center" onSubmit={handleGenre}>
         <Select 
         label="Recommendations by genre" 
-        className="max-w-xs" 
-      >
+        className="max-w-xs"
+        onChange={(e) => setGenreInput(genres[e.target.value])}
+        >
         {genres.map((genre, ix) => (
           <SelectItem key={ix} value={genre}>
             {genre}
@@ -98,13 +140,16 @@ function Fun(props) {
         ))}
       </Select>
       <Button isIconOnly type="submit" className="ml-2" size="lg">
-                    <Speaker />
-                </Button>
-            </form>
+        <Speaker />
+        </Button>
+        </form>
         </CardBody>
+        {genreOutput.length > 0 && 
+            (<CardFooter>
+                {genreOutput.map((genre) => <div>{genre.title}</div>)}
+            </CardFooter>)
+        }
     </Card>
-    
-    
     
 </div>
 
