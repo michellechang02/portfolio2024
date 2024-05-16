@@ -57,12 +57,17 @@ app.get('/music/:title', async (req, res) => {
         const result = await musicCollection.findOne({ title: title });
 
         if (result) {
-            res.status(200).json(result); // Send the result back to the client if the song is found
+            const formattedResult = {
+                ...result,
+                topGenre: result['top genre']
+            };
+            delete formattedResult['top genre']; // Optionally remove the original 'top genre' key
+
+            res.status(200).json(formattedResult); // Send the formatted result back to the client
         } else {
             res.status(404).send('Song not found'); // Send a 404 response if the song is not found
         }
 
-        
     } catch (error) {
         console.error('Failed to get song', error);
         res.status(500).send('Error getting song');
@@ -78,11 +83,17 @@ app.get('/genres/:genre', async (req, res) => {
         const musicCollection = db.collection('music');
 
         // Query the database for songs by genre
-        const result = await musicCollection.find({ "top genre": genre }).toArray();
-        console.log(result)
+        const results = await musicCollection.find({ "top genre": genre }).toArray();
+        console.log(results);
 
-        if (result && result.length > 0) {
-            res.status(200).json(result); // Send the results back to the client if songs are found
+        if (results && results.length > 0) {
+            // Map through each song and rename 'top genre' to 'topGenre'
+            const formattedResults = results.map(song => ({
+                ...song,
+                topGenre: song['top genre'], // Add 'topGenre' key with the value of 'top genre'
+            }))
+
+            res.status(200).json(formattedResults); // Send the formatted results back to the client
         } else {
             res.status(404).send('No songs found in this genre'); // Send a 404 response if no songs are found
         }
@@ -160,13 +171,25 @@ app.get('/years/:start?/:end?', async (req, res) => {
         const songs = await musicCollection.aggregate([
             {
                 $match: {
-                    year: { 
+                    year: {
                         $gte: start, 
                         $lte: end 
                     }
                 }
             },
-            { $sort: { year: 1 } } // Optionally sort by year
+            {
+                $addFields: {
+                    topGenre: "$top genre"  // Add new field topGenre with value of top genre
+                }
+            },
+            {
+                $project: {
+                    'top genre': 0  // Optionally remove the original top genre field
+                }
+            },
+            { 
+                $sort: { year: 1 } // Optionally sort by year
+            }
         ]).toArray();
 
         console.log('Fetched songs:', songs);
