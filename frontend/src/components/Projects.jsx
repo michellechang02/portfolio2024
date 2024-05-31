@@ -1,45 +1,49 @@
 import React from 'react';
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
+import {Chip} from "@nextui-org/react";
 
 function Projects(props) {
 
 
-    return (
-      <Table removeWrapper aria-label="Example static collection table" className="text-2xl mt-10 mx-auto max-w-[1000px]">
-    <TableHeader>
-        <TableColumn><div className="text-sm">COMPANY</div></TableColumn>
-        <TableColumn><div className="text-sm">ROLE</div></TableColumn>
-        <TableColumn><div className="text-sm">DETAILS</div></TableColumn>
-    </TableHeader>
-    <TableBody>
-    <TableRow key="1">
-        <TableCell><div className="text-base">Microsoft</div></TableCell>
-        <TableCell><div className="text-base">Software Engineer</div></TableCell>
-        <TableCell><div className="text-base">Viva Engage</div></TableCell>
-    </TableRow>
-    <TableRow key="2">
-        <TableCell><div className="text-base">Penn Engineering</div></TableCell>
-        <TableCell><div className="text-base">CIS 3500 Teaching Assistant</div></TableCell>
-        <TableCell><div className="text-base">Teaching students software engineering (MERN stack)</div></TableCell>
-    </TableRow>
-    <TableRow key="3">
-        <TableCell><div className="text-base">Qualcomm</div></TableCell>
-        <TableCell><div className="text-base">Software Engineer</div></TableCell>
-        <TableCell><div className="text-base">Automated machine learning pipelines (MLOps)</div></TableCell>
-    </TableRow>
-    <TableRow key="4">
-        <TableCell><div className="text-base">Penn Engineering</div></TableCell>
-        <TableCell><div className="text-base">CIS 2400 Teaching Assistant</div></TableCell>
-        <TableCell><div className="text-base">Teaching students C and pointers</div></TableCell>
-    </TableRow>
-    <TableRow key="5">
-        <TableCell><div className="text-base">Penn Medicine</div></TableCell>
-        <TableCell><div className="text-base">Summer Research Assistant</div></TableCell>
-        <TableCell><div className="text-base">Full-Stack Web Application to Visualize Brain Imaging Data in 3D</div></TableCell>
-    </TableRow>
-</TableBody>
+    const data = [
+        { id: 1, role: 'Software Engineer Intern', details: 'Viva Engage', src: "msft.jpg",
+        "skills": ["Java", "TypeScript", "GraphQL", "Cosmos DB"]},
+        { id: 2, role: 'CIS 3500 Teaching Assistant', details: 'Teaching students software engineering (MERN stack)',
+        src: "penneng.png", "skills": ["MongoDB", "Express.JS", "React.JS", "Node.JS"]},
+        { id: 3, role: 'Software Engineer Intern', details: 'Automated machine learning pipelines (MLOps)',
+        src: "qualcomm.webp", "skills": ["Python", "Docker", "YAML", "Linux"]},
+        { id: 4, role: 'CIS 2400 Teaching Assistant', details: 'Teaching students C and pointers',
+        src: "penneng.png",  "skills": ["C", "Assembly"]},
+        { id: 5, role: 'Summer Research Assistant', details: 'Full-Stack Web Application to Visualize Brain Imaging Data in 3D',
+        src: "pennmed.png", "skills": ["React.JS", "Blender", "Python", "Node.JS", "Express.JS"] },
+      ];
 
-</Table>
+      
+
+
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 mx-5 my-5">
+      {data.map(item => (
+        <div key={item.id} className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center justify-center">
+          <div className="py-4 flex flex-col items-center">
+            <div className="overflow-visible py-2 flex flex-col items-center">
+              <img
+                alt="Card background"
+                className="object-cover rounded-xl"
+                src={item.src}
+                width={270}
+              />
+              <p className="font-bold text-center mt-5">{item.role}</p>
+              <div className="flex flex-wrap justify-center mt-5">
+                {item.skills.map((skill, index) => (
+                  <Chip key={index} className="ml-2" color="primary" variant="flat">{skill}</Chip>
+                ))}
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
 
     );
 }
