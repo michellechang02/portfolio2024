@@ -1,6 +1,6 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import {Home, User, Briefcase, Database } from 'react-feather'
+import {Home, User, Briefcase, Database, FileText } from 'react-feather'
 
 export default function Navbar2() {
   return (
@@ -27,6 +27,11 @@ export default function Navbar2() {
         <NavbarItem>
           <Link color="foreground" href="/fun">
            <Database />
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="/textsum">
+           <FileText />
           </Link>
         </NavbarItem>
       </NavbarContent>

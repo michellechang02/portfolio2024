@@ -7,6 +7,7 @@ import HomePage from './components/HomePage.jsx'
 import About from './components/About.jsx'
 import Projects from './components/Projects.jsx'
 import Fun from './components/Fun.jsx'
+import TextSum from './components/TextSum';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<About/>} />
           <Route path="/projects" element={<Projects/>} />
           <Route path="/fun" element={<Fun/>} />
+          <Route path="/textsum" element={<TextSum/>} />
         </Routes>
       </Router>
     </>

@@ -6,7 +6,7 @@ function Projects(props) {
 
     const data = [
         { id: 1, role: 'Software Engineer Intern', details: 'Viva Engage', src: "msft.jpg",
-        "skills": ["Java", "TypeScript", "GraphQL", "Cosmos DB"]},
+        "skills": ["Java", "Ruby", "TypeScript", "GraphQL", "Elasticsearch", "Cosmos DB", "PostgreSQL"]},
         { id: 2, role: 'CIS 3500 Teaching Assistant', details: 'Teaching students software engineering (MERN stack)',
         src: "penneng.png", "skills": ["MongoDB", "Express.JS", "React.JS", "Node.JS"]},
         { id: 3, role: 'Software Engineer Intern', details: 'Automated machine learning pipelines (MLOps)',
