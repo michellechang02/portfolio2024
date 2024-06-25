@@ -11,24 +11,33 @@ function TextSum(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Make a POST request to /summarizetext using Axios
         try {
-            const response = await axios.post('/summarizetext', { text: value }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            // Handle the response as needed
-            console.log(response.data);  // Log the response data
+          const response = await axios.post('http://127.0.0.1:5000/summarize', {
+            text: value,
+          });
+    
+          if (response.status === 200) {
+            setSummarized(response.data.summary);
+          } else {
+            console.error('Failed to summarize text');
+          }
         } catch (error) {
-            console.error('Error:', error);
+          console.error('Error:', error);
         }
-    };
+      };
+    
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(summarized).then(() => {
+          alert('Copied to clipboard!');
+        }).catch(err => {
+          console.error('Could not copy text: ', err);
+        });
+      };
+    
 
     useEffect(() => {
 
-    }, [])
+    }, [summarized])
 
 
     return (
@@ -61,7 +70,9 @@ function TextSum(props) {
                 <CardHeader>
                     <div className="flex items-center">
                         <h4>Summarized Text</h4>
-                        <Button isIconOnly color="primary" className="ml-3" size="sm" variant="flat">
+                        <Button isIconOnly color="primary" className="ml-3" size="sm" 
+                        onClick={copyToClipboard}
+                        variant="flat">
                         <Clipboard />
                         </Button> 
                     </div>
