@@ -63,7 +63,8 @@ function About(props) {
                         <div className="flex flex-col justify-start items-start text-left mt-5 md:mt-0">
                             <Card shadow="none">
                                 <h1 className="font-bold text-2xl md:text-5xl mb-5 md:mt-40 whitespace-nowrap">Hi, I'm Michelle Chang</h1>
-                                <p className="text-xl md:text-2xl">I'm studying Computer Science at the University of Pennsylvania.</p>
+                                <p className="text-xl md:text-2xl">- studying Computer Science at the University of Pennsylvania</p>
+<p className="text-xl md:text-2xl"> - stopping substance abuse, one life at a time</p>
                             </Card>
                         </div>
                     </div>
