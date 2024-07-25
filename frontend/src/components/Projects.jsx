@@ -5,15 +5,17 @@ function Projects(props) {
 
 
     const data = [
-        { id: 1, role: 'Software Engineer Intern', details: 'Viva Engage', src: "msft.jpg",
+        { id: 1, role: 'CIS 4120/5120 Teaching Assistant', details: 'Teaching students Human-Computer Interaction', src: "penneng.png",
+        "skills": ["Supabase", "Express.JS", "React.JS", "Node.JS"]},
+        { id: 2, role: 'Software Engineer Intern', details: 'Viva Engage', src: "msft.jpg",
         "skills": ["Java", "TypeScript", "GraphQL", "Cosmos DB"]},
-        { id: 2, role: 'CIS 3500 Teaching Assistant', details: 'Teaching students software engineering (MERN stack)',
+        { id: 3, role: 'CIS 3500 Teaching Assistant', details: 'Teaching students software engineering (MERN stack)',
         src: "penneng.png", "skills": ["MongoDB", "Express.JS", "React.JS", "Node.JS"]},
-        { id: 3, role: 'Software Engineer Intern', details: 'Automated machine learning pipelines (MLOps)',
+        { id: 4, role: 'Software Engineer Intern', details: 'Automated machine learning pipelines (MLOps)',
         src: "qualcomm.webp", "skills": ["Python", "Docker", "YAML", "Linux"]},
-        { id: 4, role: 'CIS 2400 Teaching Assistant', details: 'Teaching students C and pointers',
+        { id: 5, role: 'CIS 2400 Teaching Assistant', details: 'Teaching students C and pointers',
         src: "penneng.png",  "skills": ["C", "Assembly"]},
-        { id: 5, role: 'Summer Research Assistant', details: 'Full-Stack Web Application to Visualize Brain Imaging Data in 3D',
+        { id: 6, role: 'Summer Research Assistant', details: 'Full-Stack Web Application to Visualize Brain Imaging Data in 3D',
         src: "pennmed.png", "skills": ["React.JS", "Blender", "Python", "Node.JS", "Express.JS"] },
       ];
 
