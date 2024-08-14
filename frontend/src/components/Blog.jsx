@@ -9,7 +9,7 @@ function Blog(props) {
     const posts = [
         {
           id: 1,
-          title: 'Post 1: Atomic Habits [8/14/24]',
+          title: 'Atomic Habits 습관의 힘',
           summary: `Learning about habits has changed my life. I mean, isn't it surprising how 1% changes can culminate into
           big results?
           Everyday, I make sure I have good habits to make sure 
@@ -23,7 +23,7 @@ function Blog(props) {
           if it looks lack-luster in front of other people, I will still retain my healthy habits and stay healthy.
           If I have to take a break, or find another group of people that respect my healthy habits, I will.
 
-          Healthy habits make a healthy person, and I want to identify as a healthy person.
+          Healthy habits make a healthy person, and I will identify as a healthy person.
 
           LOL this post became more about health, but it's important that I stay strong and healthy by 
           conquering the power of habits:)
@@ -31,22 +31,41 @@ function Blog(props) {
         },
         {
           id: 2,
-          title: 'Post 2',
-          summary: 'TBD',
+          title: 'Coding in a skirt 여성 소프트웨어 개발자',
+          summary: `I code in a skirt. I think it's pretty cool that I get to be feminine and code at the same time.
+          Frontend engineering is like dressing a website, and my eye for Pinterest outfits often helps out for
+          UI/UX. Frontend gets some shade for being easy compared to backend, but actually at work, I learned 
+          that TypeScript can be actually pretty difficult, especially if other frameworks like Relay.JS or Redux are
+          involved. Yammer was a mono-repo, meaning that there were multiple teams on the same frontend
+          repository and that numerous pull-requests (PR) were made everyday. Also, to merge in a feature PR, you need approvals
+          from the UI team, your team, and the team that the feature is part of which is painful to the max. Regardless,
+          I aspire to be living proof that you can be a successful software engineer while wearing a skirt.
+          `,
         },
         {
           id: 3,
-          title: 'Post 3',
-          summary: 'TBD',
+          title: 'Interpersonal Relationships 인간관계',
+          summary: `I'm a nice and respectful person. Obviously, I'm human and sometimes I make mistakes. In that case,
+          I will apologize and learn from my mistake. To all my friends, I will be warm and give them lots of compliments.
+          I will treat them the way I want to be treated.
+
+          Sometimes though, a person I get close with crosses the line. Generally, at the moment, I don't know
+          that they've crossed the line until I feel bad about myself and lose confidence afterwards. According to 
+          the books about relationships that I've read, you should give space between that person and yourself.
+          Also, it's good to tap into your intuition. Sometimes you can tell if a person is trying to cut you down, and 
+          having that person around will stunt your growth. To grow, you need people that support you, and you need to make 
+          the hard decision to let these stunters go. So, even if it's hard, 
+          I will let go of the stunters, and I will focus on the people that have supported me instead.
+          `,
         },
         {
           id: 4,
-          title: 'Post 4',
+          title: '4',
           summary: 'TBD',
         },
         {
           id: 5,
-          title: 'Post 5',
+          title: '5',
           summary: 'TBD',
         },
       ];
