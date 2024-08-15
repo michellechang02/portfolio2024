@@ -12,6 +12,7 @@ import Blog from './components/Blog.jsx'
 function App() {
   return (
     <>
+     {/* <main className="dark text-foreground bg-background"> */}
       <Navbar2/>
       <Router>
         <Routes>
@@ -22,6 +23,7 @@ function App() {
           <Route path="/blog" element={<Blog/>} />
         </Routes>
       </Router>
+      {/* </main> */}
     </>
   )
 }

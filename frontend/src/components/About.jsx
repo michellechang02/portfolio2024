@@ -37,9 +37,8 @@ function About(props) {
             img: "cmu.jpg"
           },
         {
-          title: "SkinMatcher with HCI buddies",
-          img: "hci.jpg",
-          price: "$7.50",
+          title: "Outdoor day with JEM (Joyce Emily Michelle)",
+          img: "jem.jpg",
         },
         {
           title: "Christmas in The Hyundai, South Korea",
