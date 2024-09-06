@@ -48,14 +48,6 @@ function Blog(props) {
           summary: `I'm a nice and respectful person. Obviously, I'm human and sometimes I make mistakes. In that case,
           I will apologize and learn from my mistake. To all my friends, I will be warm and give them lots of compliments.
           I will treat them the way I want to be treated.
-
-          Sometimes though, a person I get close with crosses the line. Generally, at the moment, I don't know
-          that they've crossed the line until I feel bad about myself and lose confidence afterwards. According to 
-          the books about relationships that I've read, you should give space between that person and yourself.
-          Also, it's good to tap into your intuition. Sometimes you can tell if a person is trying to cut you down, and 
-          having that person around will stunt your growth. To grow, you need people that support you, and you need to make 
-          the hard decision to let these stunters go. So, even if it's hard, 
-          I will let go of the stunters, and I will focus on the people that have supported me instead.
           `,
         },
         {
