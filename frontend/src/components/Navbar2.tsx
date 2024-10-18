@@ -1,22 +1,21 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Image } from "@nextui-org/react";
-import {Home, User, Briefcase, Database, BookOpen } from 'react-feather'
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Image } from "@nextui-org/react";
+import { Home, User, Briefcase, Database, BookOpen } from 'react-feather';
 
-export default function Navbar2() {
+const Navbar2: React.FC = () => {
   return (
     <Navbar isBordered={false} isBlurred className="mt-4">
-      <NavbarBrand href="/">
-      <Image
+      <NavbarBrand>
+        <Image
           src="/holo.png"
           alt="Logo"
           width={40}
           height={40}
-          objectFit="contain"
         />
         <p className="font-bold text-inherit ml-1">mɪˈʃɛl</p>
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-7" justify="center">
-      <NavbarItem>
+        <NavbarItem>
           <Link color="foreground" href="/">
             <Home />
           </Link>
@@ -33,15 +32,17 @@ export default function Navbar2() {
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="/fun">
-           <Database />
+            <Database />
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="/blog">
-           <BookOpen />
+            <BookOpen />
           </Link>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
   );
-}
+};
+
+export default Navbar2;
