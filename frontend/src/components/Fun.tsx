@@ -51,9 +51,7 @@ const Fun: React.FC = () => {
         try {
             const response = await axios.get<SongData>(`${config.serverURL}/music/${encodedSong}`);
             setSongAll(response.data);
-            console.log("Fetched song data:", response.data);
         } catch (error) {
-            console.log(error);
             alert((error as Error).message);
         }
         setSongInput('');
@@ -69,9 +67,7 @@ const Fun: React.FC = () => {
         try {
             const response = await axios.get<SongData[]>(`${config.serverURL}/years/${years[0]}/${years[1]}`);
             setYearsAll(response.data);
-            console.log(yearsAll);
         } catch (error) {
-            console.log(error);
             alert((error as Error).message);
         }
         setCurrentPage(1);
@@ -85,7 +81,6 @@ const Fun: React.FC = () => {
             const response = await axios.get<SongData[]>(`${config.serverURL}/genres/${encodedGenre}`);
             setGenreOutput(response.data);
         } catch (error) {
-            console.log(error);
             alert((error as Error).message);
         }
         setCurrentPage2(1);
@@ -165,11 +160,26 @@ const Fun: React.FC = () => {
                                 minValue={2010}
                                 maxValue={2019}
                                 size="lg"
-                                defaultValue={[2010, 2019]}
-                                onChange={(e) => setYears(e as [number, number])}
-                                className="flex-1 mx-2 max-w-md"
-                                formatOptions={{ useGrouping: false, style: "decimal" }}
-                                tooltipValueFormatOptions={{ useGrouping: false, style: "decimal" }}
+                                defaultValue={[2010, 2019].join(',')}
+                                    onChange={(value) => {
+                                        if (Array.isArray(value)) {
+                                        const numberArray = value.map(Number) as [number, number];
+                                        setYears(numberArray);
+                                        }
+                                    }}
+                                    className="flex-1 mx-2 max-w-md"
+                                    formatOptions={{
+                                        style: "decimal",
+                                        useGrouping: false,
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0,
+                                    }}
+                                    tooltipValueFormatOptions={{
+                                        style: "decimal",
+                                        useGrouping: false,
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0,
+                                    }}
                             />
                             <Button isIconOnly type="submit" className="ml-2" size="lg">
                                 <Clock />
