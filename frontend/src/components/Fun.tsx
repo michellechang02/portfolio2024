@@ -160,7 +160,7 @@ const Fun: React.FC = () => {
                                 minValue={2010}
                                 maxValue={2019}
                                 size="lg"
-                                defaultValue={[2010, 2019].join(',')}
+                                defaultValue={[2010, 2019]}
                                     onChange={(value) => {
                                         if (Array.isArray(value)) {
                                         const numberArray = value.map(Number) as [number, number];
