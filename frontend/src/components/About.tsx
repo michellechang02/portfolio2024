@@ -11,6 +11,9 @@ const About: React.FC = () => {
     const [clicked, setClicked] = useState(false);
 
     const list: ListItem[] = [
+        { title: "Friends I will always love", img: "bday.jpg" },
+        { title: "valgrind ./pennos --smart --kristine --yip", img: "pennos.jpg" },
+        { title: `"Michelle you're not Dark Academia!!"`, img: "fisher.jpg" },
         { title: "Rose Garden near USC", img: "la.jpg" },
         { title: "Brunch at Beverly Hills' Rodeo Drive", img: "bev.jpg" },
         { title: "Hey Day with my roommates", img: "us2.jpg" },
